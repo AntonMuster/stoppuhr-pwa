@@ -1,12 +1,12 @@
-const CACHE_NAME = 'stoppuhr-pwa-v1';
+const CACHE_NAME = 'stoppuhr-pwa-v2';
 const ASSETS_TO_CACHE = [
-  '/',
-  '/index.html',
-  '/styles.css',
-  '/app.js',
-  '/manifest.json',
-  '/icons/icon-128x128.png',
-  '/icons/icon-512x512.png'
+  '/stoppuhr-pwa/',
+  '/stoppuhr-pwa/index.html',
+  '/stoppuhr-pwa/styles.css',
+  '/stoppuhr-pwa/app.js',
+  '/stoppuhr-pwa/manifest.json',
+  '/stoppuhr-pwa/icons/icon-128x128.png',
+  '/stoppuhr-pwa/icons/icon-512x512.png'
 ];
 
 self.addEventListener('install', event => {
