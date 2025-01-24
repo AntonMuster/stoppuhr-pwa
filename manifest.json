@@ -1,6 +1,7 @@
 {
   "name": "Stoppuhr PWA",
   "short_name": "Stoppuhr",
+  "scope": "/stoppuhr-pwa/",
   "start_url": "/stoppuhr-pwa/",
   "display": "standalone",
   "background_color": "#f0f0f0",
