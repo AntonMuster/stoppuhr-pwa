@@ -18,6 +18,14 @@
       <button id="reset">Zurücksetzen</button>
     </div>
   </div>
+   <script>
+      if (navigator.serviceWorker) {
+        navigator.serviceWorker.register (
+          '/stoppuhr-pwa/service-worker.js',
+          {scope: '/stoppuhr-pwa/'}
+        )
+      }
+  </script>
   <script src="app.js"></script>
 </body>
 </html>
