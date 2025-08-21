@@ -215,6 +215,7 @@ class StopwatchApp {
             const state = {
                 elapsedTime: this.elapsedTime,
                 running: this.running,
+                startTime: this.running ? this.startTime : null,
                 lapTimes: this.lapTimes,
                 lapCounter: this.lapCounter,
                 timestamp: Date.now()
@@ -233,8 +234,8 @@ class StopwatchApp {
             const state = JSON.parse(savedState);
             const timeDiff = Date.now() - state.timestamp;
             
-            // Nur laden wenn weniger als 1 Stunde vergangen
-            if (timeDiff > 3600000) {
+            // Nur laden wenn weniger als 24 Stunden vergangen (erweitert für längere Laufzeiten)
+            if (timeDiff > 86400000) {
                 localStorage.removeItem('stopwatch-state');
                 return;
             }
@@ -249,9 +250,27 @@ class StopwatchApp {
                 this.clearLapsBtn.style.display = 'inline-block';
             }
             
-            // Timer-Anzeige aktualisieren
-            this.timerElement.textContent = this.formatTime(this.elapsedTime);
-            this.resetBtn.disabled = this.elapsedTime === 0;
+            // Timer wiederherstellen wenn er lief
+            if (state.running && state.startTime) {
+                this.running = true;
+                // Startzeit anpassen basierend auf der verstrichenen Zeit seit dem Speichern
+                const realElapsedTime = state.elapsedTime + timeDiff;
+                this.startTime = performance.now() - realElapsedTime;
+                this.elapsedTime = realElapsedTime;
+                
+                // UI entsprechend aktualisieren
+                this.startStopBtn.textContent = 'Stop';
+                this.startStopBtn.setAttribute('aria-label', 'Timer stoppen');
+                this.lapBtn.disabled = false;
+                this.resetBtn.disabled = false;
+                
+                // Timer-Display starten
+                this.updateDisplay();
+            } else {
+                // Timer-Anzeige aktualisieren für gestoppten Timer
+                this.timerElement.textContent = this.formatTime(this.elapsedTime);
+                this.resetBtn.disabled = this.elapsedTime === 0;
+            }
             
         } catch (error) {
             console.warn('State laden fehlgeschlagen:', error);
