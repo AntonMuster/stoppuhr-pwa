@@ -1,0 +1,74 @@
+{
+    "name": "Stoppuhr PWA - Präzise Zeitmessung",
+    "short_name": "Stoppuhr",
+    "description": "Eine präzise Stoppuhr-PWA mit Rundenzeiten-Funktion, Offline-Unterstützung und modernem Design",
+    "version": "2.0.0",
+    "start_url": "./",
+    "scope": "./",
+    "display": "standalone",
+    "orientation": "portrait-primary",
+    "background_color": "#f8f9fa",
+    "theme_color": "#007bff",
+    "categories": ["productivity", "utilities", "sports"],
+    "lang": "de",
+    "dir": "ltr",
+    "icons": [
+        {
+            "src": "icon-128x128.png",
+            "sizes": "128x128",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "icon-128x128.png",
+            "sizes": "128x128",
+            "type": "image/png",
+            "purpose": "maskable"
+        },
+        {
+            "src": "icon-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "icon-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable"
+        }
+    ],
+    "screenshots": [
+        {
+            "src": "icon-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "form_factor": "narrow",
+            "label": "Stoppuhr Hauptansicht"
+        }
+    ],
+    "shortcuts": [
+        {
+            "name": "Stoppuhr starten",
+            "short_name": "Start",
+            "description": "Stoppuhr direkt starten",
+            "url": "./?action=start",
+            "icons": [
+                {
+                    "src": "icon-128x128.png",
+                    "sizes": "128x128",
+                    "type": "image/png"
+                }
+            ]
+        }
+    ],
+    "prefer_related_applications": false,
+    "edge_side_panel": {
+        "preferred_width": 400
+    },
+    "launch_handler": {
+        "client_mode": "focus-existing"
+    },
+    "handle_links": "preferred",
+    "capture_links": "existing-client-navigate"
+}

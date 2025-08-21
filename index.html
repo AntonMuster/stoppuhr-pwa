@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Präzise Stoppuhr-PWA mit Rundenzeiten-Funktion">
+    <meta name="theme-color" content="#007bff">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Stoppuhr">
+    <title>Stoppuhr PWA</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="apple-touch-icon" href="icon-128x128.png">
+</head>
+<body>
+    <div id="app">
+        <header>
+            <h1>Stoppuhr</h1>
+        </header>
+        
+        <main>
+            <div id="timer" role="timer" aria-live="polite" aria-label="Aktuelle Zeit">00:00:00</div>
+            
+            <div class="controls" role="group" aria-label="Timer-Steuerung">
+                <button id="startStopBtn" aria-describedby="timer-help">Start</button>
+                <button id="resetBtn" disabled aria-describedby="timer-help">Reset</button>
+                <button id="lapBtn" disabled aria-describedby="timer-help">Runde</button>
+            </div>
+            
+            <div id="timer-help" class="sr-only">
+                Verwenden Sie die Pfeiltasten oder Leertaste zur Steuerung
+            </div>
+            
+            <section id="lap-times" aria-label="Rundenzeiten">
+                <h2>Rundenzeiten</h2>
+                <ul id="lap-list" role="list"></ul>
+                <button id="clearLapsBtn" style="display: none;">Rundenzeiten löschen</button>
+            </section>
+        </main>
+        
+        <div id="error-message" role="alert" aria-live="assertive" style="display: none;"></div>
+    </div>
+    
+    <script src="app.js"></script>
+    <script>
+        // Service Worker Registrierung
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', async () => {
+                try {
+                    const registration = await navigator.serviceWorker.register('./service-worker.js');
+                    console.log('Service Worker registriert:', registration.scope);
+                } catch (error) {
+                    console.error('Service Worker Registrierung fehlgeschlagen:', error);
+                }
+            });
+        }
+    </script>
+</body>
+</html>
